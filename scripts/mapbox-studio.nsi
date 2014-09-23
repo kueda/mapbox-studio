@@ -58,7 +58,6 @@ Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   File /r ..\..\..\*.*
   ExecWait "$INSTDIR\resources\app\vendor\vcredist_x86.exe /q /norestart"
-  CopyFiles /SILENT /FILESONLY "$INSTDIR\resources\app\vendor\ddt.exe"  $TEMP\
 SectionEnd
 
 ; Add firewall rule
@@ -83,6 +82,7 @@ SectionEnd
 
 Section -Post
   WriteUninstaller "$INSTDIR\uninstall.exe"
+  CopyFiles /SILENT /FILESONLY "$INSTDIR\resources\app\vendor\ddt.exe" $TEMP
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninstall.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
