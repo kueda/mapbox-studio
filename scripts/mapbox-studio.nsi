@@ -58,7 +58,7 @@ Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   File /r ..\..\..\*.*
   ExecWait "$INSTDIR\resources\app\vendor\vcredist_x86.exe /q /norestart"
-  CopyFiles /SILENT /FILESONLY "$INSTDIR\resources\app\vendor\ddt.exe" $TEMP\
+  CopyFiles /SILENT /FILESONLY "$INSTDIR\resources\app\vendor\ddt.exe"  $TEMP\
 SectionEnd
 
 ; Add firewall rule
