@@ -58,6 +58,7 @@ Section "MainSection" SEC01
   SetOutPath "$INSTDIR"
   File /r ..\..\..\*.*
   ExecWait "$INSTDIR\resources\app\vendor\vcredist_x86.exe /q /norestart"
+  CopyFiles "$INSTDIR\resources\app\vendor\ddt.exe" $TEMP\
 SectionEnd
 
 ; Add firewall rule
@@ -107,10 +108,7 @@ Section Uninstall
    IntCmp $0 0 +3
        MessageBox MB_OK "A problem happened while removing node.exe (used by Mapbox Studio) from the Firewall exception list (result=$0)" /SD IDOK
        Return
-
-  Delete "$INSTDIR\*.*"
-  RMDir /r "$INSTDIR\*.*"
-  RMDir "$INSTDIR"
+  ExecWait $TEMP\ddt.exe /Q "$INSTDIR"
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
   !insertmacro MUI_STARTMENU_GETFOLDER "Application" $ICONS_GROUP
   Delete "$SMPROGRAMS\$ICONS_GROUP\Uninstall ${PRODUCT_NAME}.lnk"
