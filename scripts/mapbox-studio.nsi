@@ -108,7 +108,7 @@ Section Uninstall
    IntCmp $0 0 +3
        MessageBox MB_OK "A problem happened while removing node.exe (used by Mapbox Studio) from the Firewall exception list (result=$0)" /SD IDOK
        Return
-  ExecWait $TEMP\ddt.exe /Q "$INSTDIR"
+  ExecWait "$TEMP\ddt.exe /Q $INSTDIR"
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
   !insertmacro MUI_STARTMENU_GETFOLDER "Application" $ICONS_GROUP
   Delete "$SMPROGRAMS\$ICONS_GROUP\Uninstall ${PRODUCT_NAME}.lnk"
